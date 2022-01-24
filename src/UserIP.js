@@ -29,6 +29,8 @@ export class UserIP extends LitElement {
   static get properties() {
     return {
       ip: { type: String, reflect: true },
+      city: { type: String, reflect: true },
+      country: { type: String, reflect: true },
     };
   }
 
@@ -99,6 +101,8 @@ export class UserIP extends LitElement {
       })
       .then(data => {
         this.ip = data.ip;
+        this.city = data.city;
+        this.country = data.country; // define two new variables
         return data;
       });
   }
@@ -137,10 +141,9 @@ export class UserIP extends LitElement {
   // this serves very little purpose but at least we're rendering the info
   render() {
     return html` <ul>
-      <li><strong class="ipaddress">IP address:</strong> ${this.ip}</li>
-      <li></li>
+      <li><strong class="ipaddress">IP address:</strong> ${this.ip} --location: </strong> ${this.city}, ${this.country}</li>
     </ul>`;
   }
 }
-
+// I tried my best but I don't know if it is right
 customElements.define(UserIP.tag, UserIP);
